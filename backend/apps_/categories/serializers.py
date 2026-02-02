@@ -25,4 +25,7 @@ class CategorySerializer(serializers.ModelSerializer):
         return super().create(validated_data)
     
     
-    
+class CategoryDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['name', 'slug', 'parent', 'order']

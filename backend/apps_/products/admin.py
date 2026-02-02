@@ -10,3 +10,5 @@ admin.site.register(ProductInstruction)
 admin.site.register(ProductPrice)
 admin.site.register(ProductStock)
 admin.site.register(MadeCountry)
+admin.site.register(ProductVideos)
+

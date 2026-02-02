@@ -25,7 +25,7 @@ class Seller(models.Model):
                                  on_delete=models.CASCADE, 
                                  related_name='seller')
     
-    biznes_type = models.CharField(max_length=50, choices=BusinessType.choices)
+    biznes_type = models.CharField(max_length=50, choices=BusinessType.choices, null=True, blank=True)
 
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.PENDING)
 

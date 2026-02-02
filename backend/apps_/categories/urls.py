@@ -7,7 +7,7 @@ router.register(r"admin-category", views.CategoryAdminView, basename='admin_cate
 
 
 urlpatterns = [
-    path('categories/', views.CategoryView.as_view(),name='categories'),
-    path('categories/<str:slug>/', views.CategoryDetailView.as_view(), name='category_detail'),
+    path('categories-list/', views.CategoryView.as_view(),name='categories'),
+    path('categories/', views.CategoryDetailView.as_view(), name='category_detail'),
     path('api/',include(router.urls))
 ]

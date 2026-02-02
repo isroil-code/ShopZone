@@ -19,7 +19,7 @@ class Product(models.Model):
     
     
     def __str__(self):
-        return self.seller.user.email + " - Product"
+        return self.seller.user.email + " - " + self.detail.name if hasattr(self, 'detail') else "Unnamed Product"
     
 class ProductDetail(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='detail')
@@ -31,18 +31,28 @@ class ProductDetail(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"Detail of {self.product.seller.user.email} - {self.name}"
+        return f"{self.product.seller.user.email} - {self.name}"
     
 class ProductImages(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    video = models.FileField(upload_to='product_videos/', null=True, blank=True)
     image = models.ImageField(upload_to='product_images/')
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
-        return f"Image for {self.product.seller.user.email} - {self.product.detail.name}"
+        return f" {self.product.seller.user.email} - {self.product.detail.name}"
     
+
+class ProductVideos(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='videos')
+    video = models.FileField(upload_to='product_videos/')
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"{self.product.seller.user.email} - {self.product.detail.name}"    
+
 class ProductSertificate(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='certificates')
     sertificate_image = models.ImageField(upload_to='product_certificates/')
@@ -53,7 +63,7 @@ class ProductSertificate(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"Certificate for {self.product.seller.user.email} - {self.product.detail.name}"
+        return f" {self.product.seller.user.email} - {self.product.detail.name}"
     
 class ProductInstruction(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='instructions')
@@ -63,7 +73,7 @@ class ProductInstruction(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"Instruction for {self.product.seller.user.email} - {self.product.detail.name}"
+        return f"{self.product.seller.user.email} - {self.product.detail.name}"
     
 class ProductPrice(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='price')
@@ -74,7 +84,7 @@ class ProductPrice(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"Price for {self.product.seller.user.email} - {self.product.detail.name}"
+        return f" {self.product.seller.user.email} - {self.product.detail.name}"
     
     
 class ProductStock(models.Model):
@@ -86,7 +96,7 @@ class ProductStock(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"Stock for {self.product.seller.user.email} - {self.product.detail.name}"
+        return f"{self.product.seller.user.email} - {self.product.detail.name}"
 
 class MadeCountry(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='made_countries')
@@ -96,8 +106,9 @@ class MadeCountry(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"Made Country for {self.product.seller.user.email} - {self.country_name}"
+        return f"{self.product.seller.user.email} - {self.country_name}"
 
     
+
 
 

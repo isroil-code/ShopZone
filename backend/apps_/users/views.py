@@ -31,7 +31,13 @@ class LoginView(GenericAPIView):
         if user:
             if user.is_verified:
                 refresh = RefreshToken.for_user(user=user)
-                return Response({'detail': 'Logged in successfully', 'access': str(refresh.access_token), 'refresh': str(refresh)}, status=200)
+                return Response({
+                    'detail': 'Logged in successfully',
+                    'access': str(refresh.access_token), 
+                    'refresh': str(refresh),
+                    'user_id': user.id,
+                    'email': user.email
+                }, status=200)
             else:
                 send_otp(email)
                 return Response({'detail': 'User not verified. OTP sent again.'}, status=200)

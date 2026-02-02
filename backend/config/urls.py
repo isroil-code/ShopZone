@@ -16,6 +16,7 @@ urlpatterns = [
     path('category/', include('apps_.categories.urls')),
     path('seller/', include('apps_.sellers.urls')),
     path('product/', include('apps_.products.urls')),
+   
     
     # swager
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
