@@ -112,18 +112,18 @@ SPECTACULAR_SETTINGS = {
 REDIS_URL = os.environ.get("REDIS_URL")
 
 
-if REDIS_URL:
-    CACHES = {
-        "default": {
-            "BACKEND": "django_redis.cache.RedisCache",
-            "LOCATION": REDIS_URL,
-        }
-    }
-    CELERY_BROKER_URL = REDIS_URL
-    CELERY_RESULT_BACKEND = REDIS_URL
-else:
+# if REDIS_URL:
+#     CACHES = {
+#         "default": {
+#             "BACKEND": "django_redis.cache.RedisCache",
+#             "LOCATION": REDIS_URL,
+#         }
+#     }
+#     CELERY_BROKER_URL = REDIS_URL
+#     CELERY_RESULT_BACKEND = REDIS_URL
+# else:
  
-    CACHES = {
+CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
         }
@@ -176,11 +176,13 @@ USE_I18N = True
 USE_TZ = True
 
 
-EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
+EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
+
 ANYMAIL = {
-    "RESEND_API_KEY":"re_F2ZNc6JJ_Juosz9wnuJzcmk8UUtXj2fCA",
+    "BREVO_API_KEY": os.getenv("BREVO_API_KEY"),
 }
-DEFAULT_FROM_EMAIL = "isroilberdiyorov3@gmail.com"
+
+DEFAULT_FROM_EMAIL = "your_verified_email@example.com"
 # CELERY_BROKER_URL = REDIS_URL
 # CELERY_ACCEPT_CONTENT = ["json"]
 # CELERY_TASK_SERIALIZER = "json"
