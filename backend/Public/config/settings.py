@@ -178,7 +178,7 @@ USE_TZ = True
 
 EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
 ANYMAIL = {
-    "RESEND_API_KEY": os.environ.get("RESEND_API_KEY"),
+    "RESEND_API_KEY":"re_F2ZNc6JJ_Juosz9wnuJzcmk8UUtXj2fCA",
 }
 DEFAULT_FROM_EMAIL = "isroilberdiyorov3@gmail.com"
 # CELERY_BROKER_URL = REDIS_URL
