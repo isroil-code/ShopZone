@@ -58,7 +58,7 @@ def send_otp(email):
     send_mail(
             subject='Salom!',
             message=f'Tasdiqlash Kodi: {code}',
-            from_email=settings.EMAIL_HOST_USER,
+            from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[email],
             fail_silently=False,
         )
@@ -80,7 +80,7 @@ def send_recovery_otp(email):
     send_mail(
             subject='Salom!',
             message=f'Tasdiqlash Kodi: {code_1}',
-            from_email=settings.EMAIL_HOST_USER,
+            from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[email],
             fail_silently=False,
         )
