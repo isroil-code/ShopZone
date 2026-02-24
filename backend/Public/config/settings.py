@@ -2,7 +2,7 @@ import environ
 import os
 from pathlib import Path
 from datetime import timedelta
-
+import dj_database_url
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,9 +15,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 
-
-# DEBUG = True
-DEBUG = env('DEBUG') 
+DEBUG = env.bool("DEBUG", default=False)
 
 
 ALLOWED_HOSTS = ["*"]
@@ -66,7 +64,6 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -126,16 +123,10 @@ CACHES = {
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': env('DATABASE_HOST', default='localhost'),
-        'PORT': env('DATABASE_PORT', default='5432'),
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+    )
 }
-
 
 # DATABASES = {
 #     'default': {
