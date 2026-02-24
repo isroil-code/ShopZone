@@ -109,7 +109,7 @@ SPECTACULAR_SETTINGS = {
    
 }
 
-REDIS_URL = "redis://localhost:6379/0"
+REDIS_URL = os.environ.get("REDIS_URL")
 
 CACHES = {
     "default": {
@@ -175,10 +175,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'isroilberdiyorov3@gmail.com'
 EMAIL_HOST_PASSWORD = 'bjvw yyda ubfx urye'
 
-CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_BROKER_URL = REDIS_URL
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
-CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+CELERY_RESULT_BACKEND = REDIS_URL
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
