@@ -41,16 +41,16 @@ class UserAnalyticsService:
         return User.objects.filter(is_blocked=True).count()
 
 
-from celery import shared_task
+# from celery import shared_task
 from django.core.mail import send_mail
 
 
 
-@shared_task(
-    autoretry_for=(Exception,),
-    retry_backoff=True,
-    retry_kwargs={"max_retries": 3},
-)
+# @shared_task(
+#     autoretry_for=(Exception,),
+#     retry_backoff=True,
+#     retry_kwargs={"max_retries": 3},
+# )
 def send_otp(email):
     code = random.randint(10000,99999)
     cache.set(f'{email}_code', code, timeout=60 * 5)
@@ -65,11 +65,11 @@ def send_otp(email):
     
     
     
-@shared_task(
-    autoretry_for=(Exception,),
-    retry_backoff=True,
-    retry_kwargs={"max_retries": 3},
-)  
+# @shared_task(
+#     autoretry_for=(Exception,),
+#     retry_backoff=True,
+#     retry_kwargs={"max_retries": 3},
+# )
 def send_recovery_otp(email):
     code = random.choices(string.ascii_uppercase, k=6)
     code_1 = ''

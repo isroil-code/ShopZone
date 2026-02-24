@@ -1,4 +1,4 @@
-from celery import shared_task
+# from celery import shared_task
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from decimal import Decimal
 from apps_.products.models import Product
@@ -220,8 +220,8 @@ class PaymentService:
 
     
     
-@shared_task(bind=True, autoretry_for=(Exception,), retry_backoff=True, retry_kwargs={"max_retries": 3},)
-def send_verification_link(self, user_id, payment_id):
+# @shared_task(bind=True, autoretry_for=(Exception,), retry_backoff=True, retry_kwargs={"max_retries": 3},)
+def send_verification_link(user_id, payment_id):
    
     from apps_.users.models import User
     try:

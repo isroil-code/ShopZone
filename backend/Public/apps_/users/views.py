@@ -44,14 +44,16 @@ class LoginView(GenericAPIView):
                     'redirect_to':'home, main page'
                 }, status=status.HTTP_200_OK)
             else:
-                send_otp.delay(email)
+                # send_otp.delay(email)
+                send_otp(email)
                 return Response({'detail': 'User not verified. OTP sent again.',
                                  'is_verified': user.is_verified}, status=status.HTTP_200_OK)
         else:
             if User.objects.filter(email=email).exists():
                 return Response({'detail': 'Password or Email is wrong!!!'}, status=status.HTTP_400_BAD_REQUEST)
             User.objects.create_user(email=email, password=password)
-            send_otp.delay(email)
+            # send_otp.delay(email)
+            send_otp(email)
             return Response({'detail': 'User Created. OTP code sent', 'is_verified': False}, status=status.HTTP_201_CREATED)
         
         
@@ -98,7 +100,8 @@ class ForgotPasswordView(GenericAPIView):
         email = serializer.validated_data['email']
         user = User.objects.get(email=email)
         if user:
-            send_recovery_otp.delay(email)
+            # send_recovery_otp.delay(email)
+            send_recovery_otp(email)
             return Response({'detail':'recovery otp sent'}, status=200)
         return Response({'detail':'Email not found'}, status=400)            
 

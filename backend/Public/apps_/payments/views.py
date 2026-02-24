@@ -148,7 +148,8 @@ class CreatePaymentView(APIView):
         if payment['result']['provider'] == 'on_delivery':
             return Response({'detail':'mijozga yetkazib berish punkti uchun payment yaratildi', 'payment': payment}, status=status.HTTP_201_CREATED)
         
-        send_verification_link.delay(request.user.id, payment['result']['id'])
+        # send_verification_link.delay(request.user.id, payment['result']['id'])
+        send_verification_link(request.user.id, payment['result']['id'])
         return Response({'detail':'email ingizga tasdiqlash havolasi yuborildi', 'payment': payment}, status=status.HTTP_201_CREATED)
 
 
