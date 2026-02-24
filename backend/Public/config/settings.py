@@ -216,61 +216,16 @@ NGROK_URL = "https://tracey-reboant-overflatly.ngrok-free.dev/"
 
 BASE_DOMEN = 'http://localhost:8000'
 
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-
-    "formatters": {
-        "verbose": {
-            "format": "[{asctime}] {levelname} {name} | {module}:{lineno} | {message}",
-            "style": "{",
-        },
-        "simple": {
-            "format": "{levelname} | {message}",
-            "style": "{",
-        },
-    },
-
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
-            "level": "INFO",
-            "formatter": "simple",
-        },
-        "file": {
-            "class": "logging.FileHandler",
-            "level": "INFO",
-            "filename": os.path.join(BASE_DIR, "logs/app.log"),
-            "formatter": "verbose",
-        },
-        "error_file": {
-            "class": "logging.FileHandler",
-            "level": "ERROR",
-            "filename": os.path.join(BASE_DIR, "logs/error.log"),
-            "formatter": "verbose",
-        },
-        "mail_admins": {
-            "class": "django.utils.log.AdminEmailHandler",
-            "level": "ERROR",
         },
     },
-
-    "loggers": {
-        "django": {
-            "handlers": ["console", "file"],
-            "level": "INFO",
-            "propagate": True,
-        },
-        "django.request": {
-            "handlers": ["error_file", "mail_admins"],
-            "level": "ERROR",
-            "propagate": False,
-        },
-        "myproject": {
-            "handlers": ["console", "file", "error_file"],
-            "level": "INFO",
-            "propagate": False,
-        },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
     },
 }
