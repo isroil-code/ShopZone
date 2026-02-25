@@ -112,35 +112,35 @@ SPECTACULAR_SETTINGS = {
 REDIS_URL = os.environ.get("REDIS_URL")
 
 
-# if REDIS_URL:
-#     CACHES = {
-#         "default": {
-#             "BACKEND": "django_redis.cache.RedisCache",
-#             "LOCATION": REDIS_URL,
-#         }
-#     }
-#     CELERY_BROKER_URL = REDIS_URL
-#     CELERY_RESULT_BACKEND = REDIS_URL
-# else:
+if REDIS_URL:
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL,
+        }
+    }
+    CELERY_BROKER_URL = REDIS_URL
+    CELERY_RESULT_BACKEND = REDIS_URL
+else:
  
-CACHES = {
+    CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
         }
     }
 
-# DATABASES = {
-#     "default": dj_database_url.config(
-#         default=os.environ.get("DATABASE_URL")
-#     )
-# }
-
 DATABASES = {
-    'default': {
-    'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+    )
 }
+
+# DATABASES = {
+#     'default': {
+#     'ENGINE': 'django.db.backends.sqlite3',
+#     'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -175,14 +175,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
 
 ANYMAIL = {
     "BREVO_API_KEY": os.getenv("BREVO_API_KEY"),
 }
 
-DEFAULT_FROM_EMAIL = "your_verified_email@example.com"
+DEFAULT_FROM_EMAIL = "isroilberdiyorov3@gmail.com"
 # CELERY_BROKER_URL = REDIS_URL
 # CELERY_ACCEPT_CONTENT = ["json"]
 # CELERY_TASK_SERIALIZER = "json"
