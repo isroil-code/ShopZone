@@ -178,7 +178,7 @@ USE_TZ = True
 EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
 
 ANYMAIL = {
-    "BREVO_API_KEY": os.environ.get("BREVO_API_KEY"),
+    "BREVO_API_KEY": "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",
 }
 
 DEFAULT_FROM_EMAIL = "isroilberdiyorov3@gmail.com"
