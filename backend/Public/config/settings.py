@@ -175,29 +175,19 @@ USE_I18N = True
 
 USE_TZ = True
 
-# EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
+EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
 
-# ANYMAIL = {
-#     "BREVO_API_KEY": "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",
-# }
+ANYMAIL = {
+    "BREVO_API_KEY": "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",
+}
 
-# DEFAULT_FROM_EMAIL = "isroilberdiyorov3@gmail.com"
+DEFAULT_FROM_EMAIL = "isroilberdiyorov3@gmail.com"
 # CELERY_BROKER_URL = REDIS_URL
 # CELERY_ACCEPT_CONTENT = ["json"]
 # CELERY_TASK_SERIALIZER = "json"
 # CELERY_RESULT_BACKEND = REDIS_URL
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-EMAIL_HOST = "smtp.gmail.com"     
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-EMAIL_HOST_USER = "isroilberdiyorov3@gmail.com"
-EMAIL_HOST_PASSWORD = "ggun trcu nqix vnwy"
-
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SERVER_EMAIL = EMAIL_HOST_USER
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
